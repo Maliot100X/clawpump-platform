@@ -18,11 +18,39 @@ export default function Agents() {
   return (
     <div>
       <PageHeader title="Agents" subtitle="Create and manage your AI agents on Solana">
-        <button onClick={() => setShowCreate(true)} className="px-5 py-2.5 bg-gradient-to-r from-[#00ff88] to-[#00cc6a] text-black font-semibold rounded-lg hover:shadow-[0_0_20px_rgba(0,255,136,0.4)] transition-all">+ Create Agent</button>
+        <button onClick={() => setShowCreate(true)} className="btn-glow btn-primary">+ Create Agent</button>
       </PageHeader>
-      {showCreate && (<div className="bg-[#1a1a2e] border border-[#2a2a4a] rounded-xl p-5 mb-6"><h3 className="font-semibold mb-3">Create New Agent</h3><div className="flex gap-3"><input value={name} onChange={e => setName(e.target.value)} placeholder="Agent name..." className="flex-1 bg-[#12121e] border border-[#2a2a4a] rounded-lg px-4 py-2.5 text-sm outline-none focus:border-[#00ff88]" /><button onClick={createAgent} disabled={creating} className="px-5 py-2.5 bg-[#00ff88] text-black font-semibold rounded-lg disabled:opacity-50">{creating ? "Creating..." : "Create"}</button><button onClick={() => setShowCreate(false)} className="px-5 py-2.5 bg-[#2a2a4a] rounded-lg">Cancel</button></div></div>)}
-      {agents.length === 0 ? (<div className="bg-[#1a1a2e] border border-[#2a2a4a] rounded-xl p-12 text-center"><p className="text-4xl mb-3">🤖</p><p className="text-lg font-semibold">No agents yet</p><p className="text-[#8888aa] text-sm mt-1">Create your first agent to get started.</p></div>) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">{agents.map((a: any) => (<div key={a.id || a.agent_id} className="bg-[#1a1a2e] border border-[#2a2a4a] rounded-xl p-5 hover:border-[#00ff88] transition-all"><div className="flex items-center gap-3 mb-3"><div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00ff88] to-[#3b82f6] flex items-center justify-center text-black font-bold">{(a.name || "A")[0]}</div><div><p className="font-semibold">{a.name || "Agent"}</p><p className="text-xs text-[#555577]">{a.id || a.agent_id}</p></div></div><div className="grid grid-cols-2 gap-2 text-xs"><div className="bg-[#12121e] rounded-lg p-2"><p className="text-[#8888aa]">Balance</p><p className="font-semibold text-[#00ff88]">{a.balance || "0 SOL"}</p></div><div className="bg-[#12121e] rounded-lg p-2"><p className="text-[#8888aa]">Status</p><p className="font-semibold">{a.status || "active"}</p></div></div></div>))}</div>
+      {showCreate && (
+        <div className="glass-card mb-6">
+          <h3 className="text-sm font-semibold text-[#aaaacc] mb-4">Create New Agent</h3>
+          <div className="flex gap-3">
+            <input value={name} onChange={e => setName(e.target.value)} placeholder="Agent name..." className="input-glass flex-1" />
+            <button onClick={createAgent} disabled={creating} className="btn-glow btn-primary disabled:opacity-40">{creating ? "Creating..." : "Create"}</button>
+            <button onClick={() => setShowCreate(false)} className="btn-glow btn-ghost">Cancel</button>
+          </div>
+        </div>
+      )}
+      {agents.length === 0 ? (
+        <div className="glass-card text-center py-20">
+          <p className="text-5xl mb-4 animate-float">🤖</p>
+          <p className="text-xl font-bold mb-2">No agents yet</p>
+          <p className="text-[#555570] text-sm">Create your first agent to start trading, launching tokens, and more.</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {agents.map((a: any) => (
+            <div key={a.id || a.agent_id} className="glass-card group cursor-pointer">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#00ff88] to-[#3b82f6] flex items-center justify-center text-black font-bold text-lg shadow-lg shadow-[#00ff88]/20 group-hover:scale-110 transition-transform">{(a.name || "A")[0]}</div>
+                <div><p className="font-bold">{a.name || "Agent"}</p><p className="text-[11px] text-[#444460] font-mono mt-0.5">{a.id || a.agent_id}</p></div>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="p-3 rounded-xl bg-white/[0.02]"><p className="text-[10px] text-[#444460] uppercase tracking-wider">Balance</p><p className="text-sm font-bold text-[#00ff88] mt-1">{a.balance || "0 SOL"}</p></div>
+                <div className="p-3 rounded-xl bg-white/[0.02]"><p className="text-[10px] text-[#444460] uppercase tracking-wider">Status</p><p className="text-sm font-bold mt-1">{a.status || "active"}</p></div>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

@@ -10,15 +10,15 @@ export default function Perps() {
     <div>
       <PageHeader title="Phoenix Perps" subtitle="Perpetual futures trading on Solana" />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-[#1a1a2e] border border-[#2a2a4a] rounded-xl p-5"><p className="text-xs text-[#8888aa] uppercase">Open Interest</p><p className="text-2xl font-bold text-[#3b82f6] mt-1">$0</p></div>
-        <div className="bg-[#1a1a2e] border border-[#2a2a4a] rounded-xl p-5"><p className="text-xs text-[#8888aa] uppercase">24h Volume</p><p className="text-2xl font-bold text-[#00ff88] mt-1">$0</p></div>
-        <div className="bg-[#1a1a2e] border border-[#2a2a4a] rounded-xl p-5"><p className="text-xs text-[#8888aa] uppercase">Your Positions</p><p className="text-2xl font-bold mt-1">0</p></div>
+        <div className="stat-card"><p className="text-[11px] text-[#555570] uppercase tracking-[1.5px] font-semibold">Open Interest</p><p className="text-[28px] font-bold text-[#3b82f6] mt-2">$0</p></div>
+        <div className="stat-card"><p className="text-[11px] text-[#555570] uppercase tracking-[1.5px] font-semibold">24h Volume</p><p className="text-[28px] font-bold text-[#00ff88] mt-2">$0</p></div>
+        <div className="stat-card"><p className="text-[11px] text-[#555570] uppercase tracking-[1.5px] font-semibold">Positions</p><p className="text-[28px] font-bold mt-2">0</p></div>
       </div>
-      <div className="bg-[#1a1a2e] border border-[#2a2a4a] rounded-xl overflow-hidden">
-        <div className="px-5 py-3 border-b border-[#2a2a4a]"><h3 className="text-sm font-semibold text-[#8888aa] uppercase tracking-wider">Available Markets</h3></div>
-        <table className="w-full"><thead><tr className="border-b border-[#2a2a4a]"><th className="text-left px-4 py-3 text-xs text-[#8888aa] uppercase">Market</th><th className="text-left px-4 py-3 text-xs text-[#8888aa] uppercase">Price</th><th className="text-left px-4 py-3 text-xs text-[#8888aa] uppercase">24h Change</th><th className="text-left px-4 py-3 text-xs text-[#8888aa] uppercase">Funding</th><th className="text-left px-4 py-3 text-xs text-[#8888aa] uppercase">Action</th></tr></thead><tbody>
-          {markets.length === 0 && <tr><td colSpan={5} className="px-4 py-8 text-center text-[#555577]">No markets loaded. Connect ClawPump MCP for live data.</td></tr>}
-          {markets.map((m: any, i: number) => (<tr key={i} className="border-b border-[#2a2a4a33] hover:bg-[#22224033]"><td className="px-4 py-3 text-sm font-medium">{m.symbol||"—"}</td><td className="px-4 py-3 text-sm">${m.price||"—"}</td><td className="px-4 py-3 text-sm">{m.change?m.change+"%":"—"}</td><td className="px-4 py-3 text-sm text-[#8888aa]">{m.funding||"—"}</td><td className="px-4 py-3"><button className="px-3 py-1 bg-[#3b82f615] text-[#3b82f6] rounded text-xs font-semibold">Trade</button></td></tr>))}
+      <div className="glass-card overflow-hidden">
+        <div className="px-6 py-4 border-b border-white/[0.04]"><h3 className="text-xs font-bold text-[#555570] uppercase tracking-[2px]">Available Markets</h3></div>
+        <table className="table-glass"><thead><tr><th>Market</th><th>Price</th><th>24h</th><th>Funding</th><th>Action</th></tr></thead><tbody>
+          {markets.length === 0 && <tr><td colSpan={5} className="text-center py-12 text-[#444460]">No markets loaded. Connect MCP for live data.</td></tr>}
+          {markets.map((m: any, i: number) => (<tr key={i}><td className="font-semibold">{m.symbol||"—"}</td><td>${m.price||"—"}</td><td className={(m.change||0)>=0?"text-[#00ff88]":"text-[#ef4444]"}>{m.change?m.change+"%":"—"}</td><td className="text-[#666680]">{m.funding||"—"}</td><td><button className="btn-glow btn-ghost text-xs py-1.5 px-3">Trade</button></td></tr>))}
         </tbody></table>
       </div>
     </div>
