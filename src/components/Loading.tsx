@@ -1,0 +1,1 @@
+export default function Loading({text="Loading..."}:{text?:string}){return(<div className="flex items-center gap-3 text-[#8888aa]"><div className="w-5 h-5 border-2 border-[#00ff88] border-t-transparent rounded-full animate-spin"/><span className="text-sm">{text}</span></div>);}

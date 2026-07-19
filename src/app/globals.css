@@ -1,0 +1,6 @@
+@import "tailwindcss";
+body{background:#0a0a12;color:#e4e4ef;font-family:Inter,system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#12121e}
+::-webkit-scrollbar-thumb{background:#2a2a4a;border-radius:3px}
