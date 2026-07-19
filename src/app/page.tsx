@@ -11,11 +11,20 @@ export default function Dashboard() {
   return (
     <div>
       <PageHeader title="Dashboard" subtitle="ClawPump Platform — Solana AI Agent Hub" />
+      {/* MCP Status Banner */}
+      <div className="bg-[#f9731610] border border-[#f9731630] rounded-xl p-4 mb-6 flex items-center gap-3">
+        <span className="text-xl">⚡</span>
+        <div>
+          <p className="text-sm font-semibold text-[#f97316]">MCP Authentication Required</p>
+          <p className="text-xs text-[#8888aa]">Run <code className="bg-[#12121e] px-1.5 py-0.5 rounded text-[#00ff88]">hermes clawpump setup</code> on the server to connect and see live data.</p>
+        </div>
+        <a href="/settings" className="ml-auto px-4 py-2 bg-[#f97316] text-black text-xs font-semibold rounded-lg hover:bg-[#ea580c] transition-all shrink-0">Setup Guide</a>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <StatCard label="Balance" value={data?.balance ?? "—"} color="green" />
         <StatCard label="Agents" value={String(data?.agents ?? 0)} color="blue" />
         <StatCard label="Tools Available" value="134" color="purple" />
-        <StatCard label="Market Cap" value={data?.marketCap ?? "—"} color="cyan" />
+        <StatCard label="MCP Status" value="Needs Auth" color="orange" />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <div className="bg-[#1a1a2e] border border-[#2a2a4a] rounded-xl p-5">
